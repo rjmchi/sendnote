@@ -13,7 +13,7 @@ class NotePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -21,7 +21,7 @@ class NotePolicy
      */
     public function view(User $user, Note $note): bool
     {
-        //
+        return $user->id === $note->user_id;
     }
 
     /**
@@ -29,7 +29,7 @@ class NotePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class NotePolicy
      */
     public function restore(User $user, Note $note): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -61,6 +61,6 @@ class NotePolicy
      */
     public function forceDelete(User $user, Note $note): bool
     {
-        //
+        return false;
     }
 }
