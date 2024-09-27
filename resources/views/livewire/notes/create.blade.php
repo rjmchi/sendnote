@@ -23,13 +23,13 @@ new class extends Component {
 }; ?>
 
 <div class="max-w-2xl p-3 mx-auto my-4 border border-teal-600 rounded">
-    <form wire:submit='sumbit' class="space-y-2">
+    <form wire:submit='submit' class="space-y-2">
         <x-input wire:model="title" label="Title" />
         <x-textarea wire:model='body' label="Body" />
         <x-input icon='user' wire:model="recipient" label="Recipient" />
         <x-input icon="calendar" wire:model="send_date" label="Send Date" type="date" />
 
-        <x-button right-icon="calendar" wire:click='submit' class="mt-3" spinner>Schedule</x-button>
+        <x-button right-icon="calendar" type="submit" class="mt-3" spinner>Schedule</x-button>
     </form>
 </div>
 
