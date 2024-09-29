@@ -20,8 +20,10 @@ class NoteFactory extends Factory
             'title' => fake()->sentence(3),
             'recipient' => fake()->safeEmail(),
             'body' => fake()->paragraph(2),
-            'send_date' => fake()->dateTimeThisYear('+2 months'),
-            'user_id'=>1,
+            'send_date'=> fake()->dateTimeBetween('now', '+8 days')->format('Y-m-d'),
+            'heart_count'=>fake()->numberBetween(0,10),
+            'is_published'=>fake()->randomElement([0,1,1]),
+            // 'user_id'=>1,
         ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NoteController;
+use App\Models\Note;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -20,5 +21,14 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+
+Route::get('/note/{note}', function (Note $note) {
+    if (! $note->is_published){
+        abort(404);
+    }
+    $user = $note->user;
+    return view('notes.view', ['note'=>$note, 'user'=>$user]);
+})->name('notes.view');
 
 require __DIR__.'/auth.php';

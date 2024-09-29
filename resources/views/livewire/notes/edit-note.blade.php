@@ -27,7 +27,8 @@ new #[Layout('layouts.app')] class extends Component {
 
         $this->note->update($validated);
 
-        redirect(route('notes.index'));
+        $this->dispatch('note-saved');
+        // redirect(route('notes.index'));
     }
 }; ?>
 
@@ -45,8 +46,10 @@ new #[Layout('layouts.app')] class extends Component {
             <x-input icon='user' wire:model="recipient" label="Recipient" />
             <x-input icon="calendar" wire:model="send_date" label="Send Date" type="date" />
 
-            <x-button right-icon="calendar" type="submit" class="mt-3" spinner>Schedule</x-button>
+            <x-button right-icon="calendar" type="submit" class="mt-3" spinner>Update</x-button>
         </form>
 
     </div>
+    <x-action-message on="note-saved" />
+
 </div>
