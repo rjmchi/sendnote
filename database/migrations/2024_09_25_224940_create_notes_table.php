@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('recipient');
             $table->date('send_date');
-            $table->boolean('is_published')->default(false);
+            $table->boolean('is_published')->default(true);
             $table->integer('heart_count')->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
