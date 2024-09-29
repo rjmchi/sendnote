@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -61,5 +62,15 @@ class NoteController extends Controller
     public function destroy(Note $note)
     {
         //
+    }
+
+    public function today() {
+        $now = Carbon::now();
+// dd ($now->toDateString());
+        $notes = Note::where('is_published', true)
+            ->where('send_date', $now->toDateString())
+            ->get();
+
+        dd($notes[0]->user->email);
     }
 }

@@ -22,6 +22,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::get('today', [NoteController::class, 'today']);
 
 Route::get('/note/{note}', function (Note $note) {
     if (! $note->is_published){
