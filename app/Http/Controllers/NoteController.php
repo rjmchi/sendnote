@@ -65,6 +65,8 @@ class NoteController extends Controller
     }
 
     public function today() {
+        // dd(now('America/Chicago'));
+
         $now = Carbon::now();
 // dd ($now->toDateString());
         $notes = Note::where('is_published', true)

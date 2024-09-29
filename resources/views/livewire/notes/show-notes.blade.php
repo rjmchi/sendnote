@@ -29,7 +29,6 @@ new class extends Component {
         HTML;
     }
 
-
     //
 }; ?>
 
@@ -40,9 +39,13 @@ new class extends Component {
 
     <x-card wire:key='{{$note->id}}' color="bg-white border border-indigo-200">
         <div class="flex justify-between p-2 mb-2 rounded bg-teal-50">
-            <p class="text-2xl font-bold text-teal-800">
-                <a href="{{route('notes.edit', $note)}}">{{$note->title}}</a>
-            </p>
+            @can('update', $note)
+                <p class="text-2xl font-bold text-teal-800">
+                    <a href="{{route('notes.edit', $note)}}">{{$note->title}}</a>
+                </p>
+            @else
+                <p class="text-2xl font-bold text-gray-700">{{$note->title}}</p>
+            @endcan
             <div>
                 <p class="text-xs font-bold text-teal-800">{{\Carbon\Carbon::parse($note->send_date)->format('M-d-Y')}}</p>
                 <div class="flex space-x-1"><x-icon name="heart" class="w-5 h-5" solid /><span>{{$note->heart_count}}</span></div>
@@ -51,7 +54,7 @@ new class extends Component {
         <div class="flex justify-between">
             <p>To: {{$note->recipient}}</p>
             <div>
-                <x-button icon="eye"></x-button>
+                <x-button icon="eye" href="{{route('notes.view', $note)}}"></x-button>
                 <x-button icon="trash" wire:click="delete('{{$note->id}}')"></x-button>
             </div>
         </div>
